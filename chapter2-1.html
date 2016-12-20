@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>test</title>
+	<meta charset="utf-8"/>
+	<script src="angular-1.6.0/angular.js"></script>
+	<style type="text/css">
+	</style>
+<script type="text/javascript">
+		angular.module("myApp",[])
+		.controller("myController",[function(){
+			var self=this;
+			self.a=100;
+			self.b=self.a;
+		}]);
+	</script>
+</head>
+<body  ng-controller="myController as myctrl">
+<input type="text" ng-model="myctrl.a">
+<p>{{myctrl.b}}</p>
+</body>	
+</html>
