@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<title>test</title>
+	<meta charset="utf-8"/>
+	<script src="angular-1.6.0/angular.js"></script>
+	<style type="text/css">
+	.username.ng-valid{
+		background-color: green;
+	}
+	.username.ng-dirty.ng-invalid-required{
+		background-color: red;
+	}
+	.username.ng-dirty.ng-invalid-minlength{
+		background-color: lightpink;
+	}
+	</style>
+<script type="text/javascript">
+		angular.module("myApp",[])
+		.controller("myController",[function(){
+			var self=this;
+			self.submit=function(){
+				console.log("message is :",self.user);
+			};
+		}]);
+	</script>
+</head>
+<body  ng-controller="myController as myctrl">
+<form ng-submit="myctrl.submit()" name="myform">
+	<input type="text" 
+		   class="username"
+		   ng-model="myctrl.user.username"
+		   name="uname"
+		   ng-minlength="4"
+		   required>
+	<input type="submit"
+		   value="submit"
+		   ng-disabled="myform.$invalid">
+</form>
+</body>	
+</html>
