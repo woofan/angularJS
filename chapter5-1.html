@@ -1,0 +1,47 @@
+<html ng-app="myapp">
+<head><title>Notes App</title>
+<script
+  src="angular-1.6.0/angular.js">
+</script>
+<script type="text/javascript">
+app = angular.module("myapp", []);
+//服务类,面向对象风格.可不返回任何东西.它本质上是个构造器.ag会自动调用new关键字来创建该对象
+app.service('wfservice',function(){
+  var list = [1,2,3,4,5];
+  this.show = function(){return list;};
+});
+//工厂类,函数化编程风格.可返回任何内容.它本质上是个function.
+app.factory('wffactory',function($log){
+  var list = [1,2,3,4,5];
+  $log.log(list);
+  return (list);
+});
+//常量类,不可改;能注入到配置函数中(.config)
+app.constant('PI',3.14);
+//数值类,可改,不能注入到配置函数中
+app.value('pi',3.1415);
+//修饰类,能修饰其他provider.
+app.config(function ($provide) {
+  $provide.decorator('pi', function ($delegate) {
+    return $delegate + 10;
+  });
+});
+
+app.controller('myCtrl', function($scope,wfservice,wffactory,PI,pi) {
+  $scope.a=wfservice.show();
+  $scope.b=wffactory;
+  $scope.pi1=PI;
+  $scope.pi2=pi;
+});
+
+</script>
+</head>
+<body ng-controller="myCtrl as ctrl">
+{{a}}<br>
+{{b}}<br>
+{{pi1}}<br>
+{{pi2|currency}}<br>
+
+
+</body>
+</html>
