@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<meta charset="utf-8"/>
+	<script src="angular-1.5.10/angular.js"></script>
+	<style type="text/css">
+	</style>
+</head>
+<body ng-app="myapp">
+<div ng-controller="mycontroller as myctrl">
+<h1>{{a}}</h1><br>
+<h1>{{b}}</h1><br>
+<h1>{{c}}</h1><br>
+<h1>{{d}}</h1><br
+<h1>{{e}}</h1><br></div>
+</body>
+<script type="text/javascript">
+	app = angular.module('myapp',[]);
+	app.controller('mycontroller',function($scope){
+		var list0 = [1,2,3,4,5];
+		var list = {"a":1,"b":2,"c":3,"name":"maike"};
+		var list1 = angular.copy(list);
+		list1.name="dog";
+		$scope.a = list;
+		$scope.b = list1;
+		var j = { "programmers": [ { "firstName": "Brett", "lastName":"McLaughlin", "email": "aaaa" },
+
+{ "firstName": "Jason", "lastName":"Hunter", "email": "bbbb" },
+
+{ "firstName": "Elliotte", "lastName":"Harold", "email": "cccc" }
+
+],
+
+"authors": [
+
+{ "firstName": "Isaac", "lastName": "Asimov", "genre": "science fiction" },
+
+{ "firstName": "Tad", "lastName": "Williams", "genre": "fantasy" },
+
+{ "firstName": "Frank", "lastName": "Peretti", "genre": "christian fiction" }
+
+],
+
+"musicians": [
+
+{ "firstName": "Eric", "lastName": "Clapton", "instrument": "guitar" },
+
+{ "firstName": "Sergei", "lastName": "Rachmaninoff", "instrument": "piano" }
+
+] };
+		$scope.c = angular.toJson(j);
+		$scope.d = angular.fromJson(j);
+		$scope.e = $scope.d.authors[0];
+	});
+</script>
+</html>
